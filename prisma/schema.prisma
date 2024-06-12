@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Course {
+  id String @id @default(uuid())
+  title String
+  description String
+  price Int
+  img String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  ownerId String
+  owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  buyers User[] @relation("BoughtCourses")
+  transactions Transaction[]
+
+  status CourseStatus @default(PENDING)
+  adminId String?
+  admin Admin? @relation(fields: [adminId], references: [id])
+}
+
+model User {
+  id    String    @id @default(uuid())
+  name String
+  email String @unique
+  password String
+  isSeller Boolean @default(false)
+
+  ownedCourses Course[]
+  boughtCourses Course[] @relation("BoughtCourses")
+  buyerTransactions Transaction[] @relation("BuyerTransactions")
+  ownerTransactions Transaction[] @relation("OwnerTransactions")
+}
+
+model Transaction {
+  id String @id @default(uuid())
+  price Int
+  createdAt DateTime @default(now())
+
+  buyerId String
+  buyer User @relation("BuyerTransactions", fields: [buyerId], references: [id])
+
+  courseId String
+  course Course @relation(fields: [courseId], references: [id])
+
+  ownerId String
+  owner User @relation("OwnerTransactions", fields: [ownerId], references: [id])
+}
+
+model Admin {
+  id String @id @default(uuid())
+  name String
+  email String @unique
+  password String
+  
+  courses Course[]
+}
+
+enum CourseStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
