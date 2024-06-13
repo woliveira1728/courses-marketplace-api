@@ -9,7 +9,7 @@ CREATE TABLE "Course" (
     "price" INTEGER NOT NULL,
     "img" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
     "ownerId" TEXT NOT NULL,
     "status" "CourseStatus" NOT NULL DEFAULT 'PENDING',
     "adminId" TEXT,

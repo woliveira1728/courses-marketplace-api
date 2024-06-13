@@ -17,9 +17,9 @@ export class VerifyToken {
             throw new AppError(401, "Token is required");
         }
 
-        const { id } = jwt.verify(token, process.env.JWT_SECRET as string) as JwtPayload;
+        const { id, isSeller } = jwt.verify(token, process.env.JWT_SECRET as string) as JwtPayload;
 
-        res.locals = { ...res.locals, id };
+        res.locals = { ...res.locals, id, isSeller };
 
         next();
     }

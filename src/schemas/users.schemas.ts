@@ -15,14 +15,14 @@ export const createUserReturnSchema = z.object({
     id: z.string().uuid(),
     name: z.string(),
     email: z.string().email(),
-    isSeller: z.boolean(),
-    ownedCourses: z.array(z.any()).optional().default([]),
-    boughtCourses: z.array(z.any()).optional().default([]),
-    buyerTransactions: z.array(z.any()).optional().default([]),
-    ownerTransactions: z.array(z.any()).optional().default([]),
+    isSeller: z.boolean()
   });
 
 export const userLogin = usersSchema.pick({ email: true, password: true });
+
+export const updateUserSchema = usersSchema.pick({ password: true, isSeller: true }).partial();
+
+export type TUpdateUser = z.infer<typeof updateUserSchema>;
 
 export type TUser = z.infer<typeof usersSchema>;
 
