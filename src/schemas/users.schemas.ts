@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { courseSchema, transactionSchema } from ".";
 
 export const usersSchema = z.object({
     id: z.string().min(1),

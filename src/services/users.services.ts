@@ -62,4 +62,22 @@ export class UsersServices {
         return createUserReturnSchema.parse(user);
     }
 
+    async getPurchasedCourses(id: string) {
+
+        const user = await prisma.user.findFirst({ where: { id } });
+        if (!user) {
+            throw new AppError(404, "User not found");
+        }
+
+        const transactions = await prisma.transaction.findMany({
+            where: { buyerId: id },
+            include: { course: true }
+        });
+
+        const purchasedCourses = transactions.map(transaction => transaction.course);
+
+        return purchasedCourses;
+
+    }
+
 }

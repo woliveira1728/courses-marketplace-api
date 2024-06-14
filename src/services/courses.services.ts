@@ -37,7 +37,7 @@ export class CoursesServices {
     }
     
     async getAllCourse(): Promise<TCourseCreateReturn[]> {
-        const courseList = await prisma.course.findMany();
+        const courseList = await prisma.course.findMany({ where: { status: "APPROVED" }});
 
         return courseList;
     }

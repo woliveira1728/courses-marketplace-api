@@ -40,4 +40,13 @@ export class UsersControllers {
         return res.status(200).json(response);
     }
 
+    async getPurchasedCourses(req: Request, res: Response): Promise<Response> {
+
+        const userId = res.locals.id;
+
+        const response = await this.userServices.getPurchasedCourses(userId);
+
+        return res.status(200).json(response);
+    }
+
 }

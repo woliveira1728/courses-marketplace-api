@@ -6,5 +6,10 @@ export const transactionSchema = z.object({
     courseId: z.string().min(1),
     price: z.number(),
     ownerId: z.string().min(1),
-    createdAt: z.string(), // ISO date string
 });
+
+export const createTransactionSchema = transactionSchema.omit({ id: true });
+
+export type TTransactionSchema = z.infer<typeof transactionSchema>;
+
+export type TCreateTransactionSchema = z.infer<typeof createTransactionSchema>;
