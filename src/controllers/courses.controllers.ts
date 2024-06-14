@@ -9,7 +9,7 @@ export class CoursesControllers {
 
     constructor(@inject("CoursesServices") private courseServices: CoursesServices){};
 
-    async register(req: Request, res: Response): Promise<Response> {
+    public register = async (req: Request, res: Response): Promise<Response> => {
 
         const ownerId = res.locals.id;
 
@@ -18,14 +18,14 @@ export class CoursesControllers {
         return res.status(201).json(response);
     }
 
-    async getAllCourse(req: Request, res: Response): Promise<Response> {
+    public getAllCourse = async (req: Request, res: Response): Promise<Response> => {
         
         const response = await this.courseServices.getAllCourse();
 
         return res.status(200).json(response);
     }
 
-    async updateCorse(req: Request, res: Response): Promise<Response> {
+    public updateCorse = async (req: Request, res: Response): Promise<Response> => {
         const id = req.params.id;
         const ownerId = res.locals.id;
 
@@ -34,7 +34,7 @@ export class CoursesControllers {
         return res.status(200).json(response);
     }
 
-    async delete(req: Request, res: Response): Promise<Response> {
+    public delete = async (req: Request, res: Response): Promise<Response> => {
         const id = req.params.id;
         const ownerId = res.locals.id;
 

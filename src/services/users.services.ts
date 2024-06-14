@@ -9,7 +9,7 @@ import { TUpdateUser, TUserCreate, TUserCreateReturn, TUserLogin, TUserLoginRetu
 @injectable()
 export class UsersServices {
     
-    async register(body: TUserCreate): Promise<TUserCreateReturn> {
+    public register = async (body: TUserCreate): Promise<TUserCreateReturn> => {
 
         body.password = await bcrypt.hash(body.password, 10);
 
@@ -18,7 +18,7 @@ export class UsersServices {
         return createUserReturnSchema.parse(data);
     }
 
-    async update(id: string, body: TUpdateUser): Promise<TUserCreateReturn> {
+    public update = async (id: string, body: TUpdateUser): Promise<TUserCreateReturn> => {
         const isUserValid = await prisma.user.findFirst({ where: { id } });
         if (!isUserValid) {
             throw new AppError(404, "User not found");
@@ -30,7 +30,7 @@ export class UsersServices {
 
     }
 
-    async login(body: TUserLogin ): Promise<TUserLoginReturn> {
+    public login = async (body: TUserLogin ): Promise<TUserLoginReturn> => {
 
         const user = await prisma.user.findFirst({ where: { email: body.email } });
 
@@ -56,13 +56,13 @@ export class UsersServices {
         };
     }
 
-    async getUser( id: string ): Promise<TUserCreateReturn> {
+    public getUser = async ( id: string ): Promise<TUserCreateReturn> => {
         const user = await prisma.user.findFirst({ where: { id } });
 
         return createUserReturnSchema.parse(user);
     }
 
-    async getPurchasedCourses(id: string) {
+    public getPurchasedCourses = async (id: string) => {
 
         const user = await prisma.user.findFirst({ where: { id } });
         if (!user) {

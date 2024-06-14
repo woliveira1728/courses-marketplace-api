@@ -8,7 +8,7 @@ export class AdminControllers {
 
     constructor(@inject("AdminServices") private adminServices: AdminServices){};
 
-    async register(req: Request, res: Response): Promise<Response> {
+    public register = async (req: Request, res: Response): Promise<Response> => {
 
         console.log(req.body);
         
@@ -18,14 +18,14 @@ export class AdminControllers {
 
     }
 
-    async login(req: Request, res: Response): Promise<Response> {
+    public login = async (req: Request, res: Response): Promise<Response> => {
 
         const response = await this.adminServices.login(req.body);
 
         return res.status(200).json(response);
     }
 
-    async updateCourseStatus(req: Request, res: Response): Promise<Response> {
+    public updateCourseStatus = async (req: Request, res: Response): Promise<Response> => {
 
         const courseId = req.params.id;
 
@@ -35,7 +35,7 @@ export class AdminControllers {
 
     }
 
-    async manageUser(req: Request, res: Response): Promise<Response> {
+    public manageUser = async (req: Request, res: Response): Promise<Response> => {
 
         const userId = req.params.id;
 
@@ -45,7 +45,7 @@ export class AdminControllers {
 
     }
 
-    async deleteUser(req: Request, res: Response): Promise<Response> {
+    public deleteUser = async (req: Request, res: Response): Promise<Response> => {
 
         const userId = req.params.id;
 
@@ -55,7 +55,7 @@ export class AdminControllers {
 
     }
 
-    async getAllUser(req: Request, res: Response): Promise<Response> {
+    public getAllUser = async (req: Request, res: Response): Promise<Response> => {
 
         const response = await this.adminServices.getAllUser();
 
@@ -63,7 +63,7 @@ export class AdminControllers {
 
     }
 
-    async getAllCourses(req: Request, res: Response): Promise<Response> {
+    public getAllCourses = async (req: Request, res: Response): Promise<Response> => {
 
         const response = await this.adminServices.getAllCourses();
 

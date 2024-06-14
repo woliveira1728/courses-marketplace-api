@@ -7,7 +7,7 @@ import { TCreateTransactionSchema, TTransactionSchema } from "../schemas";
 @injectable()
 export class TransactionsServices {
 
-    async register(body: TCreateTransactionSchema): Promise<TTransactionSchema> {
+    public register = async (body: TCreateTransactionSchema): Promise<TTransactionSchema> => {
 
         const buyer = await prisma.user.findUnique({ where: { id: body.buyerId } });
         if (!buyer) {

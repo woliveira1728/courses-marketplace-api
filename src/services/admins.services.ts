@@ -9,7 +9,7 @@ import { TAdminLogin, TAdminLoginReturn, TCourseCreateReturn, TCreateAdmin, TCre
 @injectable()
 export class AdminServices {
 
-    async register(data: TCreateAdmin): Promise<TCreateAdminReturn> {
+    public register = async (data: TCreateAdmin): Promise<TCreateAdminReturn> => {
 
         data.password = await bcrypt.hash(data.password, 10);
 
@@ -19,7 +19,7 @@ export class AdminServices {
 
     }
 
-    async login(body: TAdminLogin ): Promise<TAdminLoginReturn> {
+    public login = async (body: TAdminLogin ): Promise<TAdminLoginReturn> => {
 
         const admin = await prisma.admin.findFirst({ where: { email: body.email } });
 
@@ -45,7 +45,7 @@ export class AdminServices {
         };
     }
 
-    async updateCourseStatus(id: string, data: TUpdatedCourse): Promise<void> {
+    public updateCourseStatus = async (id: string, data: TUpdatedCourse): Promise<void> => {
 
         const course = await prisma.course.findFirst({ where: { id } });
         if (!course) {
@@ -56,7 +56,7 @@ export class AdminServices {
 
     }
 
-    async manageUser(id: string, data: TUpdateUser): Promise<TUserCreateReturn> {
+    public manageUser = async (id: string, data: TUpdateUser): Promise<TUserCreateReturn> => {
         
         const user = await prisma.user.findUnique({ where: { id } });
         if (!user) {
@@ -68,7 +68,7 @@ export class AdminServices {
         return createUserReturnSchema.parse(updatedUser);
     }
 
-    async deleteUser(id: string): Promise<void> {
+    public deleteUser = async (id: string): Promise<void> => {
 
         const user = await prisma.user.findUnique({ where: { id } });
         if (!user) {
@@ -79,13 +79,13 @@ export class AdminServices {
 
     }
 
-    async getAllUser(): Promise<TUserCreateReturn[]> {
+    public getAllUser = async (): Promise<TUserCreateReturn[]> => {
         const users = await prisma.user.findMany();
 
         return users.map(user => createUserReturnSchema.parse(user));
     }
 
-    async getAllCourses(): Promise<TCourseCreateReturn[]> {
+    public getAllCourses = async (): Promise<TCourseCreateReturn[]> => {
         const courses = await prisma.course.findMany();
 
         return courses.map(course => createCourseReturnSchema.parse(course));

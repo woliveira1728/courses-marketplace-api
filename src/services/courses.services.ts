@@ -11,7 +11,7 @@ import {
 @injectable()
 export class CoursesServices {
     
-    async register(ownerId: string, body: TCourseCreate): Promise<TCourseCreateReturn> {
+    public register = async (ownerId: string, body: TCourseCreate): Promise<TCourseCreateReturn> => {
                 
         const newCourse = {...body, ownerId: ownerId as string };
 
@@ -20,7 +20,7 @@ export class CoursesServices {
         return createCourseReturnSchema.parse(course);
     }
 
-    async updateCorse(id: string, body: TUpdatedCourse, ownerId: string): Promise<TCourseCreateReturn> {
+    public updateCorse = async (id: string, body: TUpdatedCourse, ownerId: string): Promise<TCourseCreateReturn> => {
         const isCourseValid = await prisma.course.findFirst({ where: { id } });
         if (!isCourseValid) {
             throw new AppError(404, "Course not found");
@@ -36,14 +36,14 @@ export class CoursesServices {
 
     }
     
-    async getAllCourse(): Promise<TCourseCreateReturn[]> {
+    public getAllCourse = async (): Promise<TCourseCreateReturn[]> => {
         const courseList = await prisma.course.findMany({ where: { status: "APPROVED" }});
 
         return courseList;
     }
 
 
-    async delete(id: string, ownerId: string ): Promise<void> {
+    public delete = async (id: string, ownerId: string ): Promise<void> => {
 
         const course = await prisma.course.findFirst({ where: { id } });
 

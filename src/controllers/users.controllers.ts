@@ -7,21 +7,21 @@ export class UsersControllers {
 
     constructor(@inject("UsersServices") private userServices: UsersServices){};
 
-    async register(req: Request, res: Response): Promise<Response> {
+    public register = async (req: Request, res: Response): Promise<Response> => {
 
         const response = await this.userServices.register(req.body);
 
         return res.status(201).json(response);
     }
 
-    async login(req: Request, res: Response): Promise<Response> {
+    public login = async (req: Request, res: Response): Promise<Response> => {
 
         const response = await this.userServices.login(req.body);
 
         return res.status(200).json(response);
     }
 
-    async getUser(req: Request, res: Response): Promise<Response> {
+    public getUser = async (req: Request, res: Response): Promise<Response> => {
 
         const { id } = res.locals;
 
@@ -30,7 +30,7 @@ export class UsersControllers {
         return res.status(200).json(response);
     }
 
-    async update(req: Request, res: Response): Promise<Response> {
+    public update = async (req: Request, res: Response): Promise<Response> => {
 
         const userUpdated = req.body;
         const id = req.params.id;
@@ -40,7 +40,7 @@ export class UsersControllers {
         return res.status(200).json(response);
     }
 
-    async getPurchasedCourses(req: Request, res: Response): Promise<Response> {
+    public getPurchasedCourses = async (req: Request, res: Response): Promise<Response> => {
 
         const userId = res.locals.id;
 
