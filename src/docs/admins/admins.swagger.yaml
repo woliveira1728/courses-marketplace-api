@@ -18,10 +18,10 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/AdminsCreateReturn"
-        409:
-          $ref: "#/components/responses/EmailAlready"
         400:
           $ref: "#/components/responses/BadRequest"
+        409:
+          $ref: "#/components/responses/EmailAlready"
   /api/admin/login:
     post:
       tags:
@@ -53,8 +53,8 @@ paths:
         - JWTAuth: []
       tags:
         - Admins
-      summary: Get a user profile
-      description: Getting a credentials user profile
+      summary: Get a admin profile
+      description: Getting a credentials admin profile
       responses:
         200:
           description: OK

@@ -18,4 +18,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/TransactionCreateReturn"
+        400:
+          $ref: "#/components/responses/BadRequest"
+        401:
+          $ref: "#/components/responses/TokenRequired"
 
