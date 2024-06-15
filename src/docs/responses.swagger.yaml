@@ -1,0 +1,110 @@
+components:
+  responses:
+    BadRequest:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ZodError"
+    NotFound:
+      description: Recourse not found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/AppError"
+    EmailAlready:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/EmailAlready"
+    CourseAlready:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/CourseAlready"
+    LoginNotMatch:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/LoginNotMatch"
+    TokenRequired:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/TokenRequired"
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Forbidden"
+  schemas:
+    AppError:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Resource not found.
+    EmailAlready:
+      type: object
+      properties:
+        message:
+          type: string
+          example: E-mail already registered
+    CourseAlready:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Course already registered
+    ZodError:
+      type: object
+      properties:
+        issues:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                example: invalid_type
+              expected:
+                type: string
+                example: string
+              received:
+                type: string
+                example: undefined
+              path:
+                type: array
+                items:
+                  type: string
+                  example: field_name_path
+              message:
+                type: string
+                example: Required
+        name:
+          type: string
+          example: ZodError
+    LoginNotMatch:
+      type: object
+      properties:
+        error:
+          type: string
+          example: E-mail and password doesn't match
+    TokenRequired:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Token is required
+    Forbidden:
+      type: object
+      properties:
+        error:
+          type: string
+          example: This user is not the car owner
+    

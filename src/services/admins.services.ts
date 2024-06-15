@@ -45,6 +45,12 @@ export class AdminServices {
         };
     }
 
+    public getAdmin = async ( id: string ): Promise<TCreateAdminReturn> => {
+        const admin = await prisma.admin.findFirst({ where: { id } });
+
+        return createAdminReturnSchema.parse(admin);
+    }
+
     public updateCourseStatus = async (id: string, data: TUpdatedCourse): Promise<void> => {
 
         const course = await prisma.course.findFirst({ where: { id } });
@@ -74,6 +80,8 @@ export class AdminServices {
         if (!user) {
             throw new AppError(404, "User not found");
         }
+
+        await prisma.transaction.deleteMany({ where: { buyerId: id } });
 
         await prisma.user.delete({ where: { id } });
 

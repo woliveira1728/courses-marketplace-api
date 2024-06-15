@@ -1,0 +1,44 @@
+components:
+  schemas:
+    Transaction:
+      type: object
+      required:
+        - courseId
+        - ownerId
+        - price
+        - buyerId
+      properties:
+        courseId:
+          type: string
+          example: "bcf52f3d-60ca-44aa-9a1e-9d5c839829c4"
+        ownerId:
+          type: string
+          example: "cc0a0d11-88b7-4987-9b7f-abbbe8a45648"
+        price:
+          type: integer
+          example: 100000
+        buyerId:
+          type: string
+          example: "001ae71f-3bed-40e7-a4fe-0aecffd68691"
+    TransactionCreateReturn:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "6d4ee71b-2b28-4338-8514-f0f20a057b82"
+        price:
+          type: integer
+          example: 100000
+        createdAt:
+          type: string
+          example: "2024-06-14T01:08:50.779Z"
+        buyerId:
+          type: string
+          example: "001ae71f-3bed-40e7-a4fe-0aecffd68691"
+        courseId:
+          type: string
+          example: "bcf52f3d-60ca-44aa-9a1e-9d5c839829c4"
+        ownerId:
+          type: string
+          example: "cc0a0d11-88b7-4987-9b7f-abbbe8a45648"
+

@@ -25,6 +25,15 @@ export class AdminControllers {
         return res.status(200).json(response);
     }
 
+    public getAdmin = async (req: Request, res: Response): Promise<Response> => {
+
+        const { id } = res.locals;
+
+        const response = await this.adminServices.getAdmin(id);
+
+        return res.status(200).json(response);
+    }
+
     public updateCourseStatus = async (req: Request, res: Response): Promise<Response> => {
 
         const courseId = req.params.id;

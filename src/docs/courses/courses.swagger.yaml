@@ -1,0 +1,77 @@
+paths:
+  /api/courses:
+    get:
+      tags:
+        - Courses
+      summary: Get all courses
+      description: Get all courses approved for sale
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminGetAllCourses"
+        401:
+          $ref: "#/components/responses/TokenRequired"
+  /api/courses/register:
+    post:
+      tags:
+        - Courses
+      summary: Create a course
+      description: Creating a course for sale
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Courses"
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CourseCreateReturn"
+        400:
+          $ref: "#/components/responses/BadRequest"
+        401:
+          $ref: "#/components/responses/TokenRequired"
+        409:
+          $ref: "#/components/responses/CourseAlready"
+  /api/courses/{id}:
+    patch:
+      tags:
+        - Courses
+      summary: Update a course
+      description: Updating a course
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateCourses"
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CourseCreateReturn"
+        401:
+          $ref: "#/components/responses/TokenRequired"
+        404:
+          $ref: "#/components/responses/NotFound"
+    delete:
+      tags:
+        - Courses
+      summary: Delete a course
+      description: Deleting a course
+      responses:
+        204:
+          description: No Content
+        401:
+          $ref: "#/components/responses/TokenRequired"
+        404:
+          $ref: "#/components/responses/NotFound"
+

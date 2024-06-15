@@ -1,0 +1,72 @@
+components:
+  schemas:
+    Courses:
+      type: object
+      required:
+        - title
+        - description
+        - price
+        - img
+      properties:
+        title:
+          type: string
+          example: "Curso Exemplo"
+        description:
+          type: string
+          example: "Descrição do curso"
+        price:
+          type: integer
+          example: 100000
+        img:
+          type: string
+          example: "https://example.com/image.png"
+    UpdateCourses:
+      type: object
+      required:
+        - description
+        - price
+        - img
+      properties:
+        description:
+          type: string
+          example: "Descrição do curso"
+        price:
+          type: integer
+          example: 100000
+        img:
+          type: string
+          example: "https://example.com/image.png"
+    CourseCreateReturn:
+      type: object
+      properties:
+        id:
+          type: string
+          example: e54a5499-9a64-4dc9-8def-0a192e5cafff
+        title:
+          type: string
+          example: "Curso Exemplo"
+        description:
+          type: string
+          example: "Descrição do curso"
+        price:
+          type: integer
+          example: 100000
+        img:
+          type: string
+          example: "https://example.com/image.png"
+        createdAt:
+          type: string
+          example: "2024-06-12T23:56:54.182Z"
+        updatedAt:
+          type: string
+          example: "2024-06-12T23:56:54.182Z"
+        ownerId:
+          type: string
+          example: cc0a0d11-88b7-4987-9b7f-abbbe8a45648
+        status:
+          type: string
+          example: "APPROVED"
+        adminId:
+          type: string
+          example: cc0a0d11-88b7-4987-9b7f-abbbe8a45648
+

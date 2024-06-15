@@ -14,12 +14,14 @@ adminRouter.post("/register", ValidateRequest.execute({ body: createAdminSchema 
 
 adminRouter.post("/login", ValidateRequest.execute({ body: userLogin }), (req, res) => adminController.login (req, res));
 
-adminRouter.patch("/courses/:id/status", VerifyAdminToken.execute, (req, res) => adminController.updateCourseStatus(req, res));
+adminRouter.get("/profile", VerifyAdminToken.execute, (req, res) => adminController.getAdmin (req, res));
+
+adminRouter.get("/users", VerifyAdminToken.execute, (req, res) => adminController.getAllUser(req, res));
 
 adminRouter.patch("/users/:id", VerifyAdminToken.execute, (req, res) => adminController.manageUser(req, res));
 
 adminRouter.delete("/users/:id", VerifyAdminToken.execute, (req, res) => adminController.deleteUser(req, res));
 
-adminRouter.get("/users", VerifyAdminToken.execute, (req, res) => adminController.getAllUser(req, res));
-
 adminRouter.get("/courses", VerifyAdminToken.execute, (req, res) => adminController.getAllCourses(req, res));
+
+adminRouter.patch("/courses/:id/status", VerifyAdminToken.execute, (req, res) => adminController.updateCourseStatus(req, res));

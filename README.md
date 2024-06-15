@@ -26,7 +26,7 @@ The project uses the following environment variables:
 | Var Name | Description | Required |
 |----------|-------------|----------|
 | DATABASE_URL | Database credentials used | required |
-| JWT_SECRET_KEY | Secret key used by JWT authentication | required |
+| JWT_SECRET | Secret key used by JWT authentication | required |
 | EXPIRES_IN | JWT Token Expiration Time (1ms, 1m, 1h, 1d...) | optional |
 
 ### Running the migrations

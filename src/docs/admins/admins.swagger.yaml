@@ -1,0 +1,163 @@
+paths:
+  /api/admin/register:
+    post:
+      tags:
+        - Admins
+      summary: Creating a new admin
+      description: Create a new admin to the system.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Admins"
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminsCreateReturn"
+        409:
+          $ref: "#/components/responses/EmailAlready"
+        400:
+          $ref: "#/components/responses/BadRequest"
+  /api/admin/login:
+    post:
+      tags:
+        - Admins
+      summary: Logging in a administrator
+      description: Logging into the application
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Login"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginAdminReturn"
+        400:
+          $ref: "#/components/responses/BadRequest"
+        401:
+          $ref: "#/components/responses/LoginNotMatch"
+        404:
+          $ref: "#/components/responses/NotFound"
+  /api/admin/profile:
+    get:
+      security:
+        - JWTAuth: []
+      tags:
+        - Admins
+      summary: Get a user profile
+      description: Getting a credentials user profile
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProfileAdminReturn"
+        401:
+          $ref: "#/components/responses/TokenRequired"
+  /api/admin/users:
+    get:
+      security:
+        - JWTAuth: []
+      tags:
+        - Admins
+      summary: Get all users
+      description: Getting all users from admin
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetAllUsers"
+        401:
+          $ref: "#/components/responses/TokenRequired"
+  /api/admin/users/{id}:
+    patch:
+      security:
+        - JWTAuth: []
+      tags:
+        - Admins
+      summary: Update isSeller in a user
+      description: Updating isSeller properties in a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminUpdateUserIsSeller"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UsersCreateReturn"
+        401:
+          $ref: "#/components/responses/TokenRequired"
+        404:
+          $ref: "#/components/responses/NotFound"
+    delete:
+      security:
+        - JWTAuth: []
+      tags:
+        - Admins
+      summary: Delete a user
+      description: Deleting a user on the database
+      responses:
+        204:
+          description: No Content
+        401:
+          $ref: "#/components/responses/TokenRequired"
+        404:
+          $ref: "#/components/responses/NotFound"
+  /api/admin/courses:
+    get:
+      security:
+        - JWTAuth: []
+      tags:
+        - Admins
+      summary: Get all courses
+      description: Getting all courses from admin
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminGetAllCourses"
+        401:
+          $ref: "#/components/responses/TokenRequired"
+  /api/admin/courses/{id}/status:
+    patch:
+      security:
+        - JWTAuth: []
+      tags:
+        - Admins
+      summary: Update status of a course
+      description: Updating status of a course
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminUpdateCourse"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminUpdateCourseReturn"
+        401:
+          $ref: "#/components/responses/TokenRequired"
+

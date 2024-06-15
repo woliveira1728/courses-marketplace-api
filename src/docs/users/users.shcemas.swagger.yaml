@@ -1,0 +1,103 @@
+components:
+  schemas:
+    Users:
+      type: object
+      required:
+        - name
+        - email
+        - password
+      optional:
+        - status
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: 227af912-87f0-4cbd-ab6a-d9120e2c2a6b
+        name:
+          type: string
+          example: Jhon Wick
+        email:
+          type: string
+          example: jwparabellum@email.com
+        password:
+          type: string
+          example: jw1234
+        isSeller:
+          type: boolean
+          example: "false"
+    Login:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          example: jwparabellum@email.com
+        password:
+          type: string
+          example: jw1234
+    UpdateUserProfile:
+      type: object
+      required:
+        - password
+        - isSeller
+      properties:
+        password:
+          type: string
+          example: jw1234
+        isSeller:
+          type: boolean
+          example: "false"
+    ProfileReturn:
+      type: object
+      properties:
+        id:
+          type: string
+          example: e54a5499-9a64-4dc9-8def-0a192e5cafff
+        name:
+          type: string
+          example: Jhon Wick
+        email:
+          type: string
+          example: jwparabellum@email.com
+        isSeller:
+          type: boolean
+          example: "false"
+    LoginReturn:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU1NGE1NDk5LTlhNjQtNGRjOS04ZGVmLTBhMTkyZTVjYWZmZiIsImlhdCI6MTcxNTI5OTg5MywiZXhwIjoxNzE1OTA0NjkzfQ.h7f_jbduxm59eVw_MaCkCHJRkq2Hdt0EGTyDdZXmdiU
+        user:
+          type: object
+          properties:
+            id:
+              type: string
+              example: e54a5499-9a64-4dc9-8def-0a192e5cafff
+            name:
+              type: string
+              example: Jhon Wick
+            email:
+              type: string
+              example: jwparabellum@email.com
+            isSeller:
+              type: boolean
+              example: "false"
+    UsersCreateReturn:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: 227af912-87f0-4cbd-ab6a-d9120e2c2a6b
+        name:
+          type: string
+          example: Jhon Wick
+        email:
+          type: string
+          example: jwparabellum@email.com
+        isSeller:
+          type: boolean
+          example: "false"

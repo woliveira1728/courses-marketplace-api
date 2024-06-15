@@ -1,0 +1,114 @@
+paths:
+  /api/users/register:
+    post:
+      tags:
+        - Users
+      summary: Creating a user
+      description: Create a new user to the system.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Users"
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UsersCreateReturn"
+        409:
+          $ref: "#/components/responses/EmailAlready"
+        400:
+          $ref: "#/components/responses/BadRequest"
+  /api/users/login:
+    post:
+      tags:
+        - Users
+      summary: Logging in a user
+      description: Logging into the application
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Login"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginReturn"
+        400:
+          $ref: "#/components/responses/BadRequest"
+        401:
+          $ref: "#/components/responses/LoginNotMatch"
+        404:
+          $ref: "#/components/responses/NotFound"
+  /api/users/profile:
+    get:
+      security:
+        - JWTAuth: []
+      tags:
+        - Users
+      summary: Get a user profile
+      description: Getting a credentials user profile
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProfileReturn"
+        404:
+          $ref: "#/components/responses/NotFound"
+        401:
+          $ref: "#/components/responses/TokenRequired"
+  /api/users/update/{id}:
+    get:
+      security:
+        - JWTAuth: []
+      tags:
+        - Users
+      summary: Update a user profile
+      description: Updating a credentials user profile
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateUserProfile"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProfileReturn"
+        401:
+          $ref: "#/components/responses/TokenRequired"
+  /api/users/purchased-courses:
+    get:
+      security:
+        - JWTAuth: []
+      tags:
+        - Users
+      summary: Get all courses for a user
+      description: Getting all courses purchased by the user
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminGetAllCourses"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProfileReturn"
+        401:
+          $ref: "#/components/responses/TokenRequired"

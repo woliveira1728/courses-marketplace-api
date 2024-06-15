@@ -1,0 +1,21 @@
+paths:
+  /api/transactions:
+    post:
+      tags:
+        - Transactions
+      summary: Create a new transaction
+      description: Creating a new course purchase transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Transaction"
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionCreateReturn"
+
