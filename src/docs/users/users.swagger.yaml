@@ -97,18 +97,29 @@ paths:
         - Users
       summary: Get all courses for a user
       description: Getting all courses purchased by the user
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AdminGetAllCourses"
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ProfileReturn"
+                $ref: "#/components/schemas/AdminGetAllCourses"
+        401:
+          $ref: "#/components/responses/TokenRequired"
+  /api/users/my-courses-for-sale:
+    get:
+      security:
+        - JWTAuth: []
+      tags:
+        - Users
+      summary: Get all courses for sale to the user
+      description: Getting all courses for sale to the user
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminGetAllCourses"
         401:
           $ref: "#/components/responses/TokenRequired"

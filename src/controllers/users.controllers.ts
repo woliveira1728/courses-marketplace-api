@@ -49,4 +49,13 @@ export class UsersControllers {
         return res.status(200).json(response);
     }
 
+    public getMyCoursesForSale = async (req: Request, res: Response): Promise<Response> => {
+
+        const userId = res.locals.id;
+
+        const response = await this.userServices.getMyCoursesForSale(userId);
+
+        return res.status(200).json(response);
+    }
+
 }

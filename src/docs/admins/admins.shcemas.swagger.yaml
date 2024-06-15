@@ -67,9 +67,9 @@ components:
     AdminUpdateUserIsSeller:
       type: object
       properties:
-        status:
+        isSeller:
           type: boolean
-          example: "false"
+          example: "true"
     AdminUpdateCourse:
       type: object
       properties:

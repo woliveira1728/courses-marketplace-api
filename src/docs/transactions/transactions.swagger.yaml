@@ -1,6 +1,8 @@
 paths:
   /api/transactions:
     post:
+      security:
+        - JWTAuth: []
       tags:
         - Transactions
       summary: Create a new transaction

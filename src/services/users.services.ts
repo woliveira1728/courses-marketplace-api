@@ -3,7 +3,7 @@ import { AppError } from "../errors/appError";
 import { injectable } from "tsyringe";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { TUpdateUser, TUserCreate, TUserCreateReturn, TUserLogin, TUserLoginReturn, createUserReturnSchema,  } from "../schemas";
+import { TCourseCreateReturn, TUpdateUser, TUserCreate, TUserCreateReturn, TUserLogin, TUserLoginReturn, createUserReturnSchema,  } from "../schemas";
 
 
 @injectable()
@@ -62,7 +62,20 @@ export class UsersServices {
         return createUserReturnSchema.parse(user);
     }
 
-    public getPurchasedCourses = async (id: string) => {
+    public getMyCoursesForSale = async (id: string): Promise<TCourseCreateReturn[]> => {
+
+        const owner = await prisma.user.findFirst({ where: { id } });
+        if (!owner) {
+            throw new AppError(404, "Owner not found");
+        }
+
+        const courseList = await prisma.course.findMany({ where: { ownerId: owner.id }});
+
+        return courseList;
+
+    }
+
+    public getPurchasedCourses = async (id: string): Promise<TCourseCreateReturn[]> => {
 
         const user = await prisma.user.findFirst({ where: { id } });
         if (!user) {

@@ -16,6 +16,8 @@ paths:
           $ref: "#/components/responses/TokenRequired"
   /api/courses/register:
     post:
+      security:
+        - JWTAuth: []
       tags:
         - Courses
       summary: Create a course
@@ -41,6 +43,8 @@ paths:
           $ref: "#/components/responses/CourseAlready"
   /api/courses/{id}:
     patch:
+      security:
+        - JWTAuth: []
       tags:
         - Courses
       summary: Update a course
@@ -63,6 +67,8 @@ paths:
         404:
           $ref: "#/components/responses/NotFound"
     delete:
+      security:
+        - JWTAuth: []
       tags:
         - Courses
       summary: Delete a course
