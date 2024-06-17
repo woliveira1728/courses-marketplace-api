@@ -12,8 +12,12 @@ import {
 export class CoursesServices {
     
     public register = async (ownerId: string, body: TCourseCreate): Promise<TCourseCreateReturn> => {
+
+        const owner = await prisma.user.findFirst({ where: { id: ownerId } });
+
+        const instructor = owner?.name as string;
                 
-        const newCourse = {...body, ownerId: ownerId as string };
+        const newCourse = {...body, instructor, ownerId: ownerId as string };
 
         const course = await prisma.course.create({ data: newCourse });
 

@@ -6,12 +6,13 @@ export const courseSchema = z.object({
     description: z.string().min(1),
     price: z.number(),
     img: z.string().min(1),
+    instructor: z.string().min(1),
     ownerId: z.string().min(1).optional(),
     status: z.enum(['PENDING', 'APPROVED', 'REJECTED']),
     adminId: z.string().optional(),
 });
 
-export const createCourseSchema = courseSchema.omit({ id: true, adminId: true });
+export const createCourseSchema = courseSchema.omit({ id: true, adminId: true, instructor: true });
 
 export const updateCourseSchema = courseSchema.omit({ id: true, adminId: true, ownerId: true }).partial();
 
