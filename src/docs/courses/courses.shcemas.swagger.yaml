@@ -36,6 +36,9 @@ components:
         img:
           type: string
           example: "https://example.com/image.png"
+        instructor:
+          type: string
+          example: "Fulano de tal"
     CourseCreateReturn:
       type: object
       properties:
@@ -54,6 +57,9 @@ components:
         img:
           type: string
           example: "https://example.com/image.png"
+        instructor:
+          type: string
+          example: "Fulano de tal"
         createdAt:
           type: string
           example: "2024-06-12T23:56:54.182Z"

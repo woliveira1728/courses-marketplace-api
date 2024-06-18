@@ -2,12 +2,15 @@ import "reflect-metadata";
 import "express-async-errors";
 import express, { json } from "express";
 import helmet from "helmet";
+import cors from "cors";
 import { HandleErrors } from "./errors/handleErrors.middleware";
 import { adminRouter, courseRouter, transactionRouter, userRouter } from "./routes";
 import { initSwagger } from "./configs/swagger";
 
 export const app = express();
 app.use(helmet());
+
+app.use(cors());
 
 app.use(json());
 
