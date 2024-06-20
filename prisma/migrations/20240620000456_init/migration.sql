@@ -8,6 +8,7 @@ CREATE TABLE "Course" (
     "description" TEXT NOT NULL,
     "price" INTEGER NOT NULL,
     "img" TEXT NOT NULL,
+    "instructor" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "ownerId" TEXT NOT NULL,

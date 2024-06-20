@@ -9,8 +9,6 @@ export class AdminControllers {
     constructor(@inject("AdminServices") private adminServices: AdminServices){};
 
     public register = async (req: Request, res: Response): Promise<Response> => {
-
-        console.log(req.body);
         
         const response = await this.adminServices.register(req.body);
 
@@ -77,6 +75,16 @@ export class AdminControllers {
         const response = await this.adminServices.getAllCourses();
 
         return res.status(200).json(response);
+
+    }
+
+    public deleteCourse = async (req: Request, res: Response): Promise<Response> => {
+
+        const courseId = req.params.id;
+
+        await this.adminServices.deleteCourse(courseId);
+
+        return res.status(200).json({ message: "Course deleted successfully" });
 
     }
 

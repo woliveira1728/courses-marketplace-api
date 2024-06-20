@@ -137,6 +137,21 @@ paths:
                 $ref: "#/components/schemas/AdminGetAllCourses"
         401:
           $ref: "#/components/responses/TokenRequired"
+  /api/admin/courses/{id}:
+    delete:
+      security:
+        - JWTAuth: []
+      tags:
+        - Admins
+      summary: Delete a course
+      description: Deleting a course on the database
+      responses:
+        204:
+          description: No Content
+        401:
+          $ref: "#/components/responses/TokenRequired"
+        404:
+          $ref: "#/components/responses/NotFound"
   /api/admin/courses/{id}/status:
     patch:
       security:

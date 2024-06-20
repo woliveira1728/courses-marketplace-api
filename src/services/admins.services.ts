@@ -99,4 +99,17 @@ export class AdminServices {
         return courses.map(course => createCourseReturnSchema.parse(course));
     }
 
+    public deleteCourse = async (id: string): Promise<void> => {
+
+        const user = await prisma.course.findUnique({ where: { id } });
+        if (!user) {
+            throw new AppError(404, "User not found");
+        }
+
+        await prisma.transaction.deleteMany({ where: { courseId: id } });
+
+        await prisma.course.delete({ where: { id } });
+
+    }
+
 }

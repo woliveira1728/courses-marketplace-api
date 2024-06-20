@@ -25,3 +25,5 @@ adminRouter.delete("/users/:id", VerifyAdminToken.execute, (req, res) => adminCo
 adminRouter.get("/courses", VerifyAdminToken.execute, (req, res) => adminController.getAllCourses(req, res));
 
 adminRouter.patch("/courses/:id/status", VerifyAdminToken.execute, (req, res) => adminController.updateCourseStatus(req, res));
+
+adminRouter.delete("/courses/:id", VerifyAdminToken.execute, (req, res) => adminController.deleteCourse(req, res));
